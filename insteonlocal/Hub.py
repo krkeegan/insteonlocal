@@ -142,11 +142,12 @@ class Hub(object):
             if im_code == '57':
                 device_id = entry.get('id_high', '') + entry.get('id_mid', '') \
                             + entry.get('id_low', '')
+
+                dev_cat = entry.get('link_data_1', '')
+                dev_sub_cat = entry.get('link_data_2', '')
+
                 group = entry.get('group', '')
                 if device_id not in linked_devices:
-                    dev_info = self.id_request(device_id)
-                    dev_cat = dev_info.get('id_high', '')
-                    dev_sub_cat = dev_info.get('id_mid', '')
                     dev_cat_record = self.get_device_category(dev_cat)
                     if dev_cat_record and 'name' in dev_cat_record:
                         dev_cat_name = dev_cat_record['name']
@@ -192,12 +193,13 @@ class Hub(object):
                 if im_code == '57':
                     device_id = entry.get('id_high', '') + entry.get('id_mid', '') \
                                 + entry.get('id_low', '')
+                    
+                    dev_cat = entry.get('link_data_1', '')
+                    dev_sub_cat = entry.get('link_data_2', '')
+
                     group = entry.get('group', '')
 
                     if device_id not in linked_devices:
-                        dev_info = self.id_request(device_id)
-                        dev_cat = dev_info.get('id_high', '')
-                        dev_sub_cat = dev_info.get('id_mid', '')
                         dev_cat_record = self.get_device_category(dev_cat)
                         if dev_cat_record and 'name' in dev_cat_record:
                             dev_cat_name = dev_cat_record['name']
